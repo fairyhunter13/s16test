@@ -21,10 +21,12 @@ func SearchHandler(c buffalo.Context) error {
 		return c.Render(http.StatusUnprocessableEntity, r.JSON(map[string]string{"error": "Please specify the title of the movie!"}))
 	}
 
-	var (
-		page         = c.Param("page")
-		pageInt, err = strconv.Atoi(page)
-	)
+	var page = c.Param("page")
+	if page == "" {
+		page = "1"
+	}
+
+	pageInt, err := strconv.Atoi(page)
 	if err != nil {
 		return c.Render(http.StatusUnprocessableEntity, r.JSON(map[string]string{"error": "Invalid page number!"}))
 	}

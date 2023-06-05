@@ -1,6 +1,7 @@
 package actions
 
 import (
+	"github.com/imroc/req/v3"
 	"sync"
 	"testbuffalo/locales"
 
@@ -18,6 +19,9 @@ import (
 // ENV is used to help switch settings based on where the
 // application is being run. Default is "development".
 var ENV = envy.Get("GO_ENV", "development")
+
+// client is a local http client
+var client = req.C().EnableDebugLog().EnableDumpAllWithoutResponse()
 
 var (
 	app     *buffalo.App
@@ -58,7 +62,8 @@ func App() *buffalo.App {
 		// Set the request content type to JSON
 		app.Use(contenttype.Set("application/json"))
 
-		app.GET("/", HomeHandler)
+		app.GET("/search", SearchHandler)
+		app.GET("/detail/{id}", DetailHandler)
 	})
 
 	return app

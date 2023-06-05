@@ -2,6 +2,18 @@
 
 Thank you for choosing Buffalo for your web development needs.
 
+## Install Buffalo
+
+To install buffalo, please check this site first: https://gobuffalo.io/documentation/getting_started/installation/.
+
+## Installing Go Module Dependencies
+
+To install Go module dependencies, we can run the following command:
+
+```console
+go mod download
+```
+
 ## Starting the Application
 
 Buffalo ships with a command that will watch your application and automatically rebuild the Go binary and any assets for you. To do that run the "buffalo dev" command:
